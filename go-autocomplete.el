@@ -37,11 +37,11 @@
   (require 'cl)
   (require 'auto-complete))
 
-(defvar go-reserved-keywords
-  '("break" "case" "chan" "const" "continue" "default" "defer" "else"
-    "fallthrough" "for" "func" "go" "goto" "if" "import" "interface" 
-    "map" "package" "range" "return" "select" "struct" "switch" "type" "var")
-  "Go reserved keywords.")
+;(defvar go-reserved-keywords
+;  '("break" "case" "chan" "const" "continue" "default" "defer" "else"
+;    "fallthrough" "for" "func" "go" "goto" "if" "import" "interface" 
+;    "map" "package" "range" "return" "select" "struct" "switch" "type" "var")
+;  "Go reserved keywords.")
 
 (defun ac-comphist-sort (db collection prefix &optional threshold)
 ;; redefine to disable sorting
@@ -109,7 +109,7 @@
 
 (add-hook 'go-mode-hook '(lambda()
 			   (auto-complete-mode 1)
-			   (setq ac-sources '(ac-source-go))))
+			   (setq ac-sources (append '(ac-source-go) ac-sources))))
 
 (add-to-list 'ac-modes 'go-mode)
 
