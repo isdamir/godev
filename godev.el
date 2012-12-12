@@ -47,6 +47,7 @@
 ;;;###autoload
 (defun go-tool-compile() "编译golang" 
             (interactive)
+            (go-tool-init)
             (set (make-local-variable 'compile-command) "go build -o debug")
             (setq compilation-read-command nil);;无需确认
             (compile compile-command)
@@ -93,7 +94,11 @@
   (shell-command "go test")
 )
 
-
+(defun go-tool-init()
+  (setq go-path (file-name-directory (buffer-file-name)))
+  (message (concat go-path ".."))
+  (setenv "GOPATH" (concat go-path ".."))
+)
 (defun go-tool-getRunPath() 
   (setq run-path (concat (file-name-directory (buffer-file-name)) "debug"))
 )
